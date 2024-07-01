@@ -8,25 +8,10 @@ export const solidColorList =
         "#e75874", "#be1558", "#fbcbc9", "#322514",
         "#ef9d10", "#3b4d61", "#6b7b8c",
         "#1e3d59", "#f5f0e1", "#ff6e40", "#ffc13b",
-        "#ecc19c", "#1e847f", "#000000",
-        "#26495c", "#c4a35a", "#c66b3d", "#e5e5dc",
-        "#d9a5b3", "#1868ae", "#c6d7eb",
-        "#FF5733",
-        "#33FF57",
-        "#3357FF",
-        "#FF33A1",
-        "#33FFF6",
-        "#A133FF",
-        "#FF8C33",
-        "#33FFBD",
-        "#FFD133",
-        "#FF3333",
-        "#75FF33",
-        "#33A1FF",
-        "#FF33D1",
-        "#8C33FF",
-        "#FFA133",
-        "#33FFD1"
+        "#ecc19c", "#1e847f", "#26495c", "#c4a35a", "#c66b3d", "#e5e5dc",
+        "#d9a5b3", "#1868ae", "#c6d7eb", "#FF5733", "#33FF57", "#3357FF",
+        "#FF33A1", "#33FFF6", "#A133FF", "#FF8C33", "#33FFBD", "#FFD133",
+        "#FF3333", "#75FF33", "#33A1FF", "#FF33D1", "#8C33FF", "#FFA133", "#33FFD1"
     ];
 
 export const gradientColorList = [
