@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent, CardHeader } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Button } from "./ui/button";
 import { Paintbrush2 } from "lucide-react";
@@ -11,6 +11,8 @@ import {
   solidColorList,
 } from "@/constants/solid-colors";
 import { cn } from "@/lib/utils";
+import { Input } from "./ui/input";
+import { ScrollArea } from "./ui/scroll-area";
 
 interface GradientPickerProps {
   background: string;
@@ -28,6 +30,26 @@ export const ColorPicker = () => {
       >
         <GradientPicker background={background} setBackground={setBackground} />
       </CardContent>
+    </Card>
+  );
+};
+
+export const TextGradientGenerator = () => {
+  const [text, setText] = React.useState<string>("Hello World!");
+
+  const [background, setBackground] =
+    React.useState<string>("linear-gradient()");
+
+  return (
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between">
+        <GradientPicker background={background} setBackground={setBackground} />
+        <Input
+          className="max-w-md"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+      </CardHeader>
     </Card>
   );
 };
@@ -82,39 +104,55 @@ export const GradientPicker = ({
               Image
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="solid" className="flex flex-wrap gap-1">
-            {solidColorList.map((color) => (
-              <div
-                key={color}
-                className="w-6 h-6 rounded-md cursor-pointer hover:scale-105"
-                style={{ background: color }}
-                onClick={() => setBackground(color)}
-              ></div>
-            ))}
+          <TabsContent value="solid">
+            <ScrollArea className="h-40">
+              <div className="flex flex-wrap gap-0.5">
+                {solidColorList.slice(0, 96).map((color) => (
+                  <div
+                    key={color}
+                    className="w-6 h-6 rounded-md cursor-pointer hover:scale-105"
+                    style={{ background: color }}
+                    onClick={() => setBackground(color)}
+                  ></div>
+                ))}
+              </div>
+            </ScrollArea>
           </TabsContent>
-          <TabsContent value="gradient" className="flex flex-wrap gap-1">
-            {gradientColorList.map((color) => (
-              <div
-                key={color}
-                className="w-6 h-6 rounded-md cursor-pointer hover:scale-105"
-                style={{ background: color }}
-                onClick={() => setBackground(color)}
-              ></div>
-            ))}
+          <TabsContent value="gradient">
+            <ScrollArea className="h-40">
+              <div className="flex flex-wrap gap-1">
+                {gradientColorList.map((color) => (
+                  <div
+                    key={color}
+                    className="w-6 h-6 rounded-md cursor-pointer hover:scale-105"
+                    style={{ background: color }}
+                    onClick={() => setBackground(color)}
+                  ></div>
+                ))}
+              </div>
+            </ScrollArea>
           </TabsContent>
           <TabsContent value="image" className="flex flex-wrap gap-1 ">
-            <div className="grid grid-cols-4 gap-1 -mt-4">
-              {imageList.map((image) => (
-                <div
-                  key={image}
-                  className="w-16 h-8 rounded-md cursor-pointer hover:scale-105"
-                  style={{ backgroundImage: image, backgroundSize: "cover" }}
-                  onClick={() => setBackground(image)}
-                ></div>
-              ))}
-            </div>
+            <ScrollArea className="h-40">
+              <div className="grid grid-cols-2 gap-1">
+                {imageList.map((image) => (
+                  <div
+                    key={image}
+                    className="w-32 h-12 rounded-md cursor-pointer hover:scale-105"
+                    style={{ backgroundImage: image, backgroundSize: "cover" }}
+                    onClick={() => setBackground(image)}
+                  ></div>
+                ))}
+              </div>
+            </ScrollArea>
           </TabsContent>
         </Tabs>
+        <Input
+          className="text-xs h-10 text-foreground placeholder:text-muted-foreground truncate mt-2"
+          value={background}
+          onChange={(e) => setBackground(e.target.value)}
+          placeholder="Enter a value"
+        />
       </PopoverContent>
     </Popover>
   );

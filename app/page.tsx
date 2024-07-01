@@ -1,4 +1,4 @@
-import { ColorPicker } from "@/components/color-picker";
+import { ColorPicker, TextGradientGenerator } from "@/components/color-picker";
 
 export default function Home() {
   return (
