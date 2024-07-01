@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavigationBar from "@/components/navigation-bar";
+import { ThemeProvider } from "@/lib/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +19,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavigationBar />
-        <main className="w-full max-w-7xl mx-auto px-6 lg:px-12 mt-6">
-          {children}
-        </main>
+        <ThemeProvider
+          defaultTheme="system"
+          attribute="class"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NavigationBar />
+          <main className="w-full max-w-7xl mx-auto px-6 lg:px-12 mt-6">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );
